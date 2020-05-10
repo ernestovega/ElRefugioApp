@@ -49,12 +49,21 @@ android {
             option("Adagger.formatGeneratedSource=disabled")
         }
     }
-// To inline the bytecode built with JVM target 1.8 into
-// bytecode that is being built with JVM target 1.6. (e.g. navArgs)
-
 
     kotlinOptions {
         jvmTarget = "1.8"
+    }
+
+    sourceSets {
+        main {
+            res.srcDirs = [
+                    'src/main/res/layouts/c_see_ads',
+                    'src/main/res/layouts/b_adopt',
+                    'src/main/res/layouts/a_home',
+                    'src/main/res/layouts/main',
+                    'src/main/res/layouts',
+                    'src/main/res']
+        }
     }
 }
 
@@ -120,4 +129,10 @@ dependencies {
     testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    //WEB SCRAPPING
+    //https://www.kotlintips.com/scraping-the-web-using-kotlin/
+    implementation group: 'org.jsoup', name: 'jsoup', version: '1.12.1'
+    //DE AQUI SACAMOS FOTO, GENERO, EDAD(en nombre) Y NOMBRE, BUSCANDO LOS <ul>: https://elrefugio.org/masAnimales.aspx?i=0&t=PerrosAdopta&tt=PerrosAdopta&c=1800&m=0&h=0&ch=0&n=
+    //PARA LA FICHA, Y YA CON EL NOMBRE, BUSCAMOS EL ÚNICO <UL> AQUI: https://elrefugio.org/ficha/nombredelperro(CALIFORNIA)
 }

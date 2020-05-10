@@ -14,7 +14,7 @@
 
         <activity
             android:name=".android.main.activity.MainActivity"
-            android:label="@string/title_activity_main"
+            android:label="@string/label_main_activity"
             android:theme="@style/AppTheme.BrandedLaunch">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

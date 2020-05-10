@@ -21,7 +21,6 @@ import com.etologic.elrefugioapp.android.global.base.BaseViewModel
 class MainViewModel internal constructor(
 //    private val getVariableUseCase: GetVariableUseCase
 ) : BaseViewModel() {
-
 //    private var _variable = MutableLiveData<Boolean>()
 //    internal fun getVariable(): LiveData<Boolean> = _variable
 //

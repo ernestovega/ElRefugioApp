@@ -1,14 +1,14 @@
-package com.etologic.elrefugioapp.android.main.fragments.home
+package com.etologic.elrefugioapp.android.main.fragments.c_see_ads
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import javax.inject.Inject
 
-class HomeViewModelFactory
+class SeeAdsViewModelFactory
 @Inject constructor() : ViewModelProvider.NewInstanceFactory() {
     
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return HomeViewModel() as T
+        return SeeAdsViewModel() as T
     }
 }

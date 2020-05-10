@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.*
-import com.etologic.elrefugioapp.R
 import com.etologic.elrefugioapp.R.id
 import com.etologic.elrefugioapp.R.layout
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -36,8 +35,8 @@ class MainActivity : DaggerAppCompatActivity() {
         setSupportActionBar(findViewById(id.mainToolbar))
         val navController: NavController = findNavController(id.fMainNavHost)
         val navigationView: NavigationView = findViewById(id.nvMain) ?: return false
-        val drawerLayout: DrawerLayout = findViewById<DrawerLayout>(id.dlMain) ?: return false
-        appBarConfiguration = AppBarConfiguration(setOf(id.nav_home, id.nav_gallery, id.nav_slideshow), drawerLayout)
+        val drawerLayout: DrawerLayout = findViewById(id.dlMain) ?: return false
+        appBarConfiguration = AppBarConfiguration(setOf(id.nav_home, id.nav_adopt, id.nav_see_ads), drawerLayout)
         setupActionBarWithNavController(navController, appBarConfiguration)
         navigationView.setupWithNavController(navController)
         return true
@@ -57,17 +56,11 @@ class MainActivity : DaggerAppCompatActivity() {
 //        mainViewModel.text.observe(this, Observer {  })
     }
     
-//    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        menuInflater.inflate(R.menu.main_activity2, menu)
-//        return true
-//    }
-    
     override fun onOptionsItemSelected(item: MenuItem): Boolean =
         item.onNavDestinationSelected(findNavController(id.fMainNavHost)) || super.onOptionsItemSelected(item)
     
     override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.fMainNavHost)
+        val navController = findNavController(id.fMainNavHost)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 }

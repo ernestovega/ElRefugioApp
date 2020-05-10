@@ -25,7 +25,6 @@ import io.reactivex.disposables.CompositeDisposable
 open class BaseViewModel : ViewModel() {
     
     protected var disposables = CompositeDisposable()
-    
     private var _error = MutableLiveData<Throwable>()
     internal fun getError(): LiveData<Throwable> = _error
     

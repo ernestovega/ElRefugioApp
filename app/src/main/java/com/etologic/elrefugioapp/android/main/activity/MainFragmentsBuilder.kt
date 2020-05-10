@@ -16,9 +16,9 @@
 */
 package com.etologic.elrefugioapp.android.main.activity
 
-import com.etologic.elrefugioapp.android.main.fragments.gallery.GalleryFragment
-import com.etologic.elrefugioapp.android.main.fragments.home.HomeFragment
-import com.etologic.elrefugioapp.android.main.fragments.slideshow.SlideshowFragment
+import com.etologic.elrefugioapp.android.main.fragments.a_home.HomeFragment
+import com.etologic.elrefugioapp.android.main.fragments.b_adopt.AdoptFragment
+import com.etologic.elrefugioapp.android.main.fragments.c_see_ads.SeeAdsFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -29,8 +29,8 @@ abstract class MainFragmentsBuilder {
     internal abstract fun provideHomeFragmentFactory(): HomeFragment
     
     @ContributesAndroidInjector
-    internal abstract fun provideGalleryFragmentFactory(): GalleryFragment
+    internal abstract fun provideAdoptFragmentFactory(): AdoptFragment
     
     @ContributesAndroidInjector
-    internal abstract fun provideSlideshowFragmentFactory(): SlideshowFragment
+    internal abstract fun provideSeeAdsFragmentFactory(): SeeAdsFragment
 }

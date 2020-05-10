@@ -22,14 +22,14 @@ import androidx.lifecycle.ViewModelProvider
 import com.etologic.elrefugioapp.android.global.base.BaseFragment
 import javax.inject.Inject
 
-abstract class BaseMainFragment : BaseFragment() {
+abstract class MainBaseFragment : BaseFragment() {
     
     @Inject
-    internal lateinit var viewModelFactory: MainViewModelFactory
+    internal lateinit var activityViewModelFactory: MainViewModelFactory
     protected var activityViewModel: MainViewModel? = null
     
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        activity?.let { activityViewModel = ViewModelProvider(requireActivity(), viewModelFactory).get(MainViewModel::class.java) }
+        activity?.let { activityViewModel = ViewModelProvider(requireActivity(), activityViewModelFactory).get(MainViewModel::class.java) }
     }
 }

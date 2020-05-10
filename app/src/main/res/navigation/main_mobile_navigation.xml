@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.etologic.elrefugioapp.android.main.fragments.a_home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/a_home_fragment">
+
+        <action
+            android:id="@+id/action_HomeFragment_to_AdoptFragment"
+            app:destination="@id/nav_adopt" />
+
+        <action
+            android:id="@+id/action_HomeFragment_to_SeeAdsFragment"
+            app:destination="@id/nav_see_ads" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_adopt"
+        android:name="com.etologic.elrefugioapp.android.main.fragments.b_adopt.AdoptFragment"
+        android:label="@string/menu_adopt"
+        tools:layout="@layout/b_adopt_fragment" />
+
+    <fragment
+        android:id="@+id/nav_see_ads"
+        android:name="com.etologic.elrefugioapp.android.main.fragments.c_see_ads.SeeAdsFragment"
+        android:label="@string/menu_label_see_ads"
+        tools:layout="@layout/c_see_ads_fragment" />
+
+</navigation>
