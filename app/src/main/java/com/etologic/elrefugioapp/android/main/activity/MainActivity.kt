@@ -6,6 +6,7 @@ import android.view.MenuItem
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -13,6 +14,10 @@ import androidx.navigation.ui.*
 import com.etologic.elrefugioapp.R
 import com.etologic.elrefugioapp.R.id
 import com.etologic.elrefugioapp.R.layout
+import com.google.android.gms.ads.AdListener
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.InterstitialAd
+import com.google.android.gms.ads.MobileAds
 import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
@@ -27,25 +32,51 @@ class MainActivity : DaggerAppCompatActivity() {
     
     @Inject
     lateinit var mainViewModelFactory: MainViewModelFactory
-    private lateinit var mainViewModel: MainViewModel
+    private lateinit var viewModel: MainViewModel
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var drawerLayout: DrawerLayout
+    private lateinit var mInterstitialAd: InterstitialAd
     private var lastBackPress: Long = 0
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(layout.main_activity)
-        if (!initToolbarAndDrawerAndNavigation()) return
+    
+        initAds()
+        initToolbarAndDrawerAndNavigation()
         initViewModel()
     }
     
-    private fun initToolbarAndDrawerAndNavigation(): Boolean {
+    private fun initAds() {
+        MobileAds.initialize(this) {}
+        mInterstitialAd = InterstitialAd(this)
+        mInterstitialAd.adUnitId = "ca-app-pub-3940256099942544/1033173712"//FixMe: This is a test id
+        mInterstitialAd.adListener = object : AdListener() {
+            override fun onAdLoaded() {
+                mInterstitialAd.show()
+            }
+            
+            override fun onAdFailedToLoad(errorCode: Int) {}
+            
+            override fun onAdOpened() {}
+            
+            override fun onAdClicked() {}
+            
+            override fun onAdLeftApplication() {}
+            
+            override fun onAdClosed() {
+                viewModel.setInterstitialAdFinished()
+            }
+        }
+    }
+    
+    private fun initToolbarAndDrawerAndNavigation() {
         val toolbar = findViewById<Toolbar>(id.tMain)
         val collapsingToolbarLayout = findViewById<CollapsingToolbarLayout>(id.ctlMain)
         setSupportActionBar(toolbar)
         val navController: NavController = findNavController(id.fMainNavHost)
-        val navigationView: NavigationView = findViewById(id.nvMain) ?: return false
-        drawerLayout = findViewById(id.dlMain) ?: return false
+        val navigationView: NavigationView = findViewById(id.nvMain)
+        drawerLayout = findViewById(id.dlMain)
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 id.nav_home,
@@ -59,7 +90,6 @@ class MainActivity : DaggerAppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         collapsingToolbarLayout.setupWithNavController(toolbar, navController, appBarConfiguration)
         navigationView.setupWithNavController(navController)
-        return true
     }
     
     override fun onSupportNavigateUp(): Boolean = findNavController(id.fMainNavHost).navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
@@ -73,7 +103,13 @@ class MainActivity : DaggerAppCompatActivity() {
         item.onNavDestinationSelected(findNavController(id.fMainNavHost)) || super.onOptionsItemSelected(item)
     
     private fun initViewModel() {
-        mainViewModel = ViewModelProvider(this, mainViewModelFactory).get(MainViewModel::class.java)
+        viewModel = ViewModelProvider(this, mainViewModelFactory).get(MainViewModel::class.java)
+        viewModel.getLoadAd().observe(this, Observer { this.showAd() })
+    }
+    
+    private fun showAd() {
+        if (!mInterstitialAd.isLoaded)
+            mInterstitialAd.loadAd(AdRequest.Builder().build())
     }
     
     override fun onBackPressed() {

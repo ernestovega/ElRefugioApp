@@ -119,9 +119,6 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
-    //WEB SCRAPPING
-    //https://www.kotlintips.com/scraping-the-web-using-kotlin/
-    implementation group: 'org.jsoup', name: 'jsoup', version: '1.12.1'
-    //DE AQUI SACAMOS FOTO, GENERO, EDAD(en nombre) Y NOMBRE, BUSCANDO LOS <ul>: https://elrefugio.org/masAnimales.aspx?i=0&t=PerrosAdopta&tt=PerrosAdopta&c=1800&m=0&h=0&ch=0&n=
-    //PARA LA FICHA, Y YA CON EL NOMBRE, BUSCAMOS EL ÚNICO <UL> AQUI: https://elrefugio.org/ficha/nombredelperro(CALIFORNIA)
+    //ADS
+    implementation 'com.google.android.gms:play-services-ads:19.1.0'
 }

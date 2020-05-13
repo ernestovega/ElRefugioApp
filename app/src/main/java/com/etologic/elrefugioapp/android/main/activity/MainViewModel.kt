@@ -16,6 +16,8 @@
 */
 package com.etologic.elrefugioapp.android.main.activity
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.etologic.elrefugioapp.android.global.base.BaseViewModel
 import com.etologic.elrefugioapp.core.model.enums.WebPageTypes
 import com.etologic.elrefugioapp.core.use_cases.GetWebPagesUseCase
@@ -25,8 +27,21 @@ class MainViewModel internal constructor(
     private val getWebPagesUseCase: GetWebPagesUseCase
 ) : BaseViewModel() {
     
+    private val _loadAd = MutableLiveData<Boolean>()
+    internal fun getLoadAd(): LiveData<Boolean> = _loadAd
+    private val _interstitialAdFinished = MutableLiveData<Boolean>()
+    internal fun getInterstitialFinished(): LiveData<Boolean> = _interstitialAdFinished
+    
     internal fun getWebPage(webPageType: WebPageTypes): String =
         getWebPagesUseCase.getWebPage(webPageType)
             .subscribeOn(Schedulers.io())
             .blockingGet()
+    
+    internal fun loadIntersticial() {
+        _loadAd.postValue(true)
+    }
+    
+    internal fun setInterstitialAdFinished() {
+        _interstitialAdFinished.postValue(true)
+    }
 }
