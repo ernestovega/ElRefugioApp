@@ -12,21 +12,21 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="AppTheme.BrandedLaunch" parent="AppTheme.NoActionBar">
+    <style name="AppTheme.RippleEffect" parent="AppTheme">
+        <item name="android:foreground">?attr/selectableItemBackgroundBorderless</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+    </style>
+
+    <style name="AppTheme.BrandedLaunch" parent="AppTheme">
         <item name="android:windowBackground">@drawable/branded_bg</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="AppTheme.BrandedLaunch.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
-
-    <style name="RippleEffect" parent="AppTheme">
-        <item name="android:foreground">?attr/selectableItemBackgroundBorderless</item>
-        <item name="android:clickable">true</item>
-        <item name="android:focusable">true</item>
-    </style>
+    <style name="AppTheme.BrandedLaunch.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="AlertDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:textColorPrimary">@color/textColorPrimary</item>

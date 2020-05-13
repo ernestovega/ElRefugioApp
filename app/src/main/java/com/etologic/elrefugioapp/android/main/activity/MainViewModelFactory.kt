@@ -18,12 +18,13 @@ package com.etologic.elrefugioapp.android.main.activity
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.etologic.elrefugioapp.core.use_cases.GetWebPagesUseCase
 import javax.inject.Inject
 
 class MainViewModelFactory
-@Inject constructor() : ViewModelProvider.NewInstanceFactory() {
+@Inject constructor(private val getWebPagesUseCase: GetWebPagesUseCase) : ViewModelProvider.NewInstanceFactory() {
     
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T =
-        MainViewModel() as T
+        MainViewModel(getWebPagesUseCase) as T
 }

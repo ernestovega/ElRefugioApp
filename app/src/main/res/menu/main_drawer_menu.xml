@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home_24dp"
+            android:title="@string/menu_label_home" />
+        <item
+            android:id="@+id/nav_adopt"
+            android:icon="@drawable/ic_adopt_24dp"
+            android:title="@string/menu_label_adopt" />
+        <item
+            android:id="@+id/nav_welcoming"
+            android:icon="@drawable/ic_welcoming_24dp"
+            android:title="@string/menu_label_welcoming" />
+        <item
+            android:id="@+id/nav_vet_services"
+            android:icon="@drawable/ic_vet_services_24dp"
+            android:title="@string/menu_label_vet_services" />
+        <item
+            android:id="@+id/nav_see_ads"
+            android:icon="@drawable/ic_donate_24dp"
+            android:title="@string/menu_label_see_ads" />
+        <item
+            android:id="@+id/nav_shop"
+            android:icon="@drawable/ic_shop_24dp"
+            android:title="@string/menu_label_shop" />
+        <item
+            android:id="@+id/nav_become_member"
+            android:icon="@drawable/ic_become_member_24dp"
+            android:title="@string/menu_label_become_member" />
+        <item
+            android:id="@+id/nav_guau_walker"
+            android:icon="@drawable/ic_guau_walker_24dp"
+            android:title="@string/menu_label_guau_walker" />
+        <item
+            android:id="@+id/nav_instagram"
+            android:icon="@drawable/ic_instagram_24dp"
+            android:title="@string/instagram" />
+        <item
+            android:id="@+id/nav_youtube"
+            android:icon="@drawable/ic_youtube_24dp"
+            android:title="@string/youtube" />
+        <item
+            android:id="@+id/twitter"
+            android:icon="@drawable/ic_twitter_24dp"
+            android:title="@string/twitter" />
+        <item
+            android:id="@+id/nav_facebook"
+            android:icon="@drawable/ic_facebook_24dp"
+            android:title="@string/facebook" />
+        <item
+            android:id="@+id/nav_email"
+            android:icon="@drawable/ic_email_24dp"
+            android:title="@string/menu_label_email" />
+
+    </group>
+
+</menu>

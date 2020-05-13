@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu>
+
+    <!--    <item-->
+    <!--        android:id="@+id/nav_facebook"-->
+    <!--        android:icon="@drawable/ic_facebook_24dp"-->
+    <!--        android:title="@string/facebook"-->
+    <!--        app:showAsAction="ifRoom" />-->
+
+    <!--    <item-->
+    <!--        android:id="@+id/nav_twitter"-->
+    <!--        android:icon="@drawable/ic_twitter_24dp"-->
+    <!--        android:title="@string/twitter"-->
+    <!--        app:showAsAction="ifRoom" />-->
+
+    <!--    <item-->
+    <!--        android:id="@+id/nav_instagram"-->
+    <!--        android:icon="@drawable/ic_instagram_24dp"-->
+    <!--        android:title="@string/instagram"-->
+    <!--        app:showAsAction="ifRoom" />-->
+
+</menu>

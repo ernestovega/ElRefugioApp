@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/nav_header_height"
+    android:background="@color/colorPrimaryDark"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="-7dp"
+        android:importantForAccessibility="no"
+        android:paddingTop="@dimen/status_bar"
+        android:scaleType="fitXY"
+        android:src="@drawable/dog_eyes" />
+
+    <ImageView
+        android:id="@+id/ivDrawerHeaderTitle"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_centerInParent="true"
+        android:importantForAccessibility="no"
+        android:scaleType="centerCrop"
+        android:src="@drawable/logo_elrefugio" />
+
+    <TextView
+        android:id="@+id/tvMainDrawerHeaderSubtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ivDrawerHeaderTitle"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:text="@string/drawer_header_subtitle"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        tools:ignore="RelativeOverlap" />
+
+</RelativeLayout>

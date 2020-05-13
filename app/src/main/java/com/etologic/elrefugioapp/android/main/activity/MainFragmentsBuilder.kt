@@ -16,9 +16,13 @@
 */
 package com.etologic.elrefugioapp.android.main.activity
 
-import com.etologic.elrefugioapp.android.main.fragments.a_home.HomeFragment
-import com.etologic.elrefugioapp.android.main.fragments.b_adopt.AdoptFragment
-import com.etologic.elrefugioapp.android.main.fragments.c_see_ads.SeeAdsFragment
+import com.etologic.elrefugioapp.android.main.fragments.adopt.AdoptFragment
+import com.etologic.elrefugioapp.android.main.fragments.become_member.BecomeMemberFragment
+import com.etologic.elrefugioapp.android.main.fragments.guau_walker.GuauWalkerFragment
+import com.etologic.elrefugioapp.android.main.fragments.home.HomeFragment
+import com.etologic.elrefugioapp.android.main.fragments.see_ads.SeeAdsFragment
+import com.etologic.elrefugioapp.android.main.fragments.vet_services.VetServicesFragment
+import com.etologic.elrefugioapp.android.main.fragments.welcoming.WelcomingFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -33,4 +37,16 @@ abstract class MainFragmentsBuilder {
     
     @ContributesAndroidInjector
     internal abstract fun provideSeeAdsFragmentFactory(): SeeAdsFragment
+    
+    @ContributesAndroidInjector
+    internal abstract fun provideBecomeMemberFragmentFactory(): BecomeMemberFragment
+    
+    @ContributesAndroidInjector
+    internal abstract fun provideWelcomingFragmentFactory(): WelcomingFragment
+    
+    @ContributesAndroidInjector
+    internal abstract fun provideGuauWalkerFragmentFactory(): GuauWalkerFragment
+    
+    @ContributesAndroidInjector
+    internal abstract fun provideVetServicesFragmentFactory(): VetServicesFragment
 }

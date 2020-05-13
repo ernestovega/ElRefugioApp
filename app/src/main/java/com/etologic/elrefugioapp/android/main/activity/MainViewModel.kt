@@ -17,20 +17,16 @@
 package com.etologic.elrefugioapp.android.main.activity
 
 import com.etologic.elrefugioapp.android.global.base.BaseViewModel
+import com.etologic.elrefugioapp.core.model.enums.WebPageTypes
+import com.etologic.elrefugioapp.core.use_cases.GetWebPagesUseCase
+import io.reactivex.schedulers.Schedulers
 
 class MainViewModel internal constructor(
-//    private val getVariableUseCase: GetVariableUseCase
+    private val getWebPagesUseCase: GetWebPagesUseCase
 ) : BaseViewModel() {
-//    private var _variable = MutableLiveData<Boolean>()
-//    internal fun getVariable(): LiveData<Boolean> = _variable
-//
-//    internal fun refreshVariable(): Array<String> {
-//        disposables.add(
-//            getVariableUseCase.get()
-//                .subscribeOn(Schedulers.io())
-//                .subscribe(
-//                    { _variable.postValue(it) },
-//                    { _error.postValue(it) })
-//        )
-//    }
+    
+    internal fun getWebPage(webPageType: WebPageTypes): String =
+        getWebPagesUseCase.getWebPage(webPageType)
+            .subscribeOn(Schedulers.io())
+            .blockingGet()
 }

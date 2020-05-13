@@ -1,20 +1,45 @@
 <resources>
 
+    <!--  APP  -->
     <string name="app_name">El Refugio</string>
+    <string name="ups_something_wrong">¡Ups!\nAlgo salió mal\n:(</string>
 
-    <!--  ERRORS  -->
-    <string name="ups_something_wrong">Ups! Something went wrong.</string>
+    <!--  TOOLBAR  -->
+    <string name="instagram">Instagram</string>
+    <string name="youtube">Youtube</string>
+    <string name="twitter">Twitter</string>
+    <string name="facebook">Facebook</string>
+    <string name="url_instagram">https://www.instagram.com/el_refugio/</string>
+    <string name="url_youtube">https://www.youtube.com/channel/UCSlihPlrLoCcXL3zvOw4aZw</string>
+    <string name="url_twitter">https://twitter.com/el_refugio</string>
+    <string name="url_facebook">https://es-la.facebook.com/pages/Organizaci%C3%B3n-El-Refugio/48993718129</string>
 
-    <!--  MAIN ACTIVITY  -->
+    <!--  DRAWER  -->
+    <string name="menu_label_shop">Tienda</string>
+    <string name="menu_label_email">Contáctanos</string>
+    <string name="url_shop">https://elrefugio.org/shopping</string>
+    <string name="url_contact_us">https://elrefugio.org/contacto</string>
+
+    <!--  MAIN  -->
     <string name="label_main_activity">MainActivity</string>
-    <string name="navigation_drawer_open">Open menu</string>
-    <string name="navigation_drawer_close">Close menu</string>
-    <string name="nav_header_title">El Refugio</string>
-    <string name="nav_header_subtitle">Protegiendo animales desde 1996</string>
-    <string name="menu_home">Home</string>
-    <string name="menu_adopt">Adopt</string>
-    <string name="menu_label_see_ads">See ads</string>
+    <string name="press_again_to_exit">Pulsa de nuevo para salir</string>
+    <string name="drawer_header_title">El Refugio</string>
+    <string name="drawer_header_subtitle">Protegiendo animales\ndesde 1996</string>
+    <string name="menu_label_home">Inicio</string>
+    <string name="menu_label_adopt">Adoptar</string>
+    <string name="menu_label_welcoming">Nodriza</string>
+    <string name="menu_label_vet_services">Ven al Veterinario</string>
+    <string name="menu_label_see_ads">Dona viendo anuncios</string>
+    <string name="menu_label_become_member">Hazte socio</string>
+    <string name="menu_label_guau_walker">Guau walker</string>
 
-    <!--  ADOPT  -->
+    <!--  FRAGMENTS  -->
+    <string name="url_home">https://elrefugio.org/quienes-somos</string>
+    <string name="url_adopt">https://elrefugio.org/adopta</string>
+    <string name="url_become_member">https://elrefugio.org/hazte-socio</string>
+    <string name="url_welcoming">https://elrefugio.org/nodriza</string>
+    <string name="url_guau_walker">https://elrefugio.org/guau-walker</string>
+    <string name="url_vet_services">https://elrefugio.org/ayudanos/centro-veterinario</string>
 
+    <!--  UNCLASSIFIED  -->
 </resources>

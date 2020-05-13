@@ -7,30 +7,172 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.etologic.elrefugioapp.android.main.fragments.a_home.HomeFragment"
-        android:label="@string/menu_home"
+        android:name="com.etologic.elrefugioapp.android.main.fragments.home.HomeFragment"
+        android:label="@string/menu_label_home"
         tools:layout="@layout/a_home_fragment">
 
         <action
             android:id="@+id/action_HomeFragment_to_AdoptFragment"
-            app:destination="@id/nav_adopt" />
+            app:destination="@id/nav_adopt"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
 
         <action
             android:id="@+id/action_HomeFragment_to_SeeAdsFragment"
-            app:destination="@id/nav_see_ads" />
+            app:destination="@id/nav_see_ads"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+
+        <action
+            android:id="@+id/action_HomeFragment_to_BecomeMemberFragment"
+            app:destination="@id/nav_become_member"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+
+        <action
+            android:id="@+id/action_HomeFragment_to_WelcomingFragment"
+            app:destination="@id/nav_welcoming"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+
+        <action
+            android:id="@+id/action_HomeFragment_to_GuauWalkerFragment"
+            app:destination="@id/nav_guau_walker"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+
+        <action
+            android:id="@+id/action_HomeFragment_to_VetServicesFragment"
+            app:destination="@id/nav_vet_services"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+
+        <action
+            android:id="@+id/action_HomeFragment_to_Shop"
+            app:destination="@id/nav_shop"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+
+        <action
+            android:id="@+id/action_HomeFragment_to_ContactUs"
+            app:destination="@id/nav_email"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+
+        <action
+            android:id="@+id/action_HomeFragment_to_Youtube"
+            app:destination="@id/nav_youtube"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+
+        <action
+            android:id="@+id/action_HomeFragment_to_Instagram"
+            app:destination="@id/nav_instagram"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+
+        <action
+            android:id="@+id/action_HomeFragment_to_Twitter"
+            app:destination="@id/nav_twitter"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+
+        <action
+            android:id="@+id/action_HomeFragment_to_Facebook"
+            app:destination="@id/nav_facebook"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
 
     </fragment>
 
     <fragment
         android:id="@+id/nav_adopt"
-        android:name="com.etologic.elrefugioapp.android.main.fragments.b_adopt.AdoptFragment"
-        android:label="@string/menu_adopt"
+        android:name="com.etologic.elrefugioapp.android.main.fragments.adopt.AdoptFragment"
+        android:label="@string/menu_label_adopt"
         tools:layout="@layout/b_adopt_fragment" />
 
     <fragment
         android:id="@+id/nav_see_ads"
-        android:name="com.etologic.elrefugioapp.android.main.fragments.c_see_ads.SeeAdsFragment"
+        android:name="com.etologic.elrefugioapp.android.main.fragments.see_ads.SeeAdsFragment"
         android:label="@string/menu_label_see_ads"
         tools:layout="@layout/c_see_ads_fragment" />
+
+    <fragment
+        android:id="@+id/nav_become_member"
+        android:name="com.etologic.elrefugioapp.android.main.fragments.become_member.BecomeMemberFragment"
+        android:label="@string/menu_label_become_member"
+        tools:layout="@layout/d_become_member_fragment" />
+
+    <fragment
+        android:id="@+id/nav_welcoming"
+        android:name="com.etologic.elrefugioapp.android.main.fragments.welcoming.WelcomingFragment"
+        android:label="@string/menu_label_welcoming"
+        tools:layout="@layout/e_welcoming_fragment" />
+
+    <fragment
+        android:id="@+id/nav_guau_walker"
+        android:name="com.etologic.elrefugioapp.android.main.fragments.guau_walker.GuauWalkerFragment"
+        android:label="@string/menu_label_guau_walker"
+        tools:layout="@layout/f_guau_walker_fragment" />
+
+    <fragment
+        android:id="@+id/nav_vet_services"
+        android:name="com.etologic.elrefugioapp.android.main.fragments.vet_services.VetServicesFragment"
+        android:label="@string/menu_label_vet_services"
+        tools:layout="@layout/g_vet_services_fragment" />
+
+    <activity
+        android:id="@+id/nav_shop"
+        app:action="android.intent.action.VIEW"
+        app:data="@string/url_shop" />
+
+    <activity
+        android:id="@+id/nav_email"
+        app:action="android.intent.action.VIEW"
+        app:data="@string/url_contact_us" />
+
+    <activity
+        android:id="@+id/nav_youtube"
+        app:action="android.intent.action.VIEW"
+        app:data="@string/url_youtube" />
+
+    <activity
+        android:id="@+id/nav_instagram"
+        app:action="android.intent.action.VIEW"
+        app:data="@string/url_instagram" />
+
+    <activity
+        android:id="@+id/nav_twitter"
+        app:action="android.intent.action.VIEW"
+        app:data="@string/url_twitter" />
+
+    <activity
+        android:id="@+id/nav_facebook"
+        app:action="android.intent.action.VIEW"
+        app:data="@string/url_facebook" />
 
 </navigation>
