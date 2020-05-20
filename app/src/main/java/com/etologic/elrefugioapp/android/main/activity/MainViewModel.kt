@@ -22,6 +22,9 @@ import com.etologic.elrefugioapp.android.global.base.BaseViewModel
 
 class MainViewModel internal constructor() : BaseViewModel() {
     
+    internal fun getInterstitialAdUnit(): String = "ca-app-pub-3940256099942544/1033173712"
+    internal fun getBannerAdUnit(): String = "ca-app-pub-2237700199215764/3601305954"
+    
     private val _loadAd = MutableLiveData<Boolean>()
     internal fun getLoadAd(): LiveData<Boolean> = _loadAd
     private val _interstitialAdFinished = MutableLiveData<Boolean>()

@@ -113,4 +113,9 @@ class SeeAdsFragment : MainBaseFragment() {
             (SharedPreferencesUtils.getData(requireContext(), SP_KEY_AD_SEEN_TIMES, Int::class.java) ?: 0) + 1
         )
     }
+    
+    override fun onPause() {
+        countdown.cancel()
+        super.onPause()
+    }
 }

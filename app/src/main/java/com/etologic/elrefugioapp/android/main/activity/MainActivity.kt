@@ -1,6 +1,7 @@
 package com.etologic.elrefugioapp.android.main.activity
 
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.widget.Toolbar
@@ -11,18 +12,20 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.*
-import com.etologic.elrefugioapp.BuildConfig
 import com.etologic.elrefugioapp.R
 import com.etologic.elrefugioapp.R.id
 import com.etologic.elrefugioapp.R.layout
-import com.google.android.gms.ads.AdListener
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.InterstitialAd
-import com.google.android.gms.ads.MobileAds
-import com.google.android.material.appbar.CollapsingToolbarLayout
+import com.google.ads.consent.ConsentInfoUpdateListener
+import com.google.ads.consent.ConsentInformation
+import com.google.ads.consent.ConsentStatus
+import com.google.ads.consent.ConsentStatus.*
+import com.google.ads.mediation.admob.AdMobAdapter
+import com.google.android.gms.ads.*
+import com.google.android.gms.ads.AdRequest.Builder
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import dagger.android.support.DaggerAppCompatActivity
+import kotlinx.android.synthetic.main.main_activity_actionbar.*
 import javax.inject.Inject
 
 class MainActivity : DaggerAppCompatActivity() {
@@ -31,34 +34,56 @@ class MainActivity : DaggerAppCompatActivity() {
         internal const val LAST_BACKPRESSED_MIN_TIME: Long = 2000
     }
     
+    private var areConsentsAccepted: Boolean = false
+    
     @Inject
     lateinit var mainViewModelFactory: MainViewModelFactory
     private lateinit var viewModel: MainViewModel
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var drawerLayout: DrawerLayout
-    private lateinit var mInterstitialAd: InterstitialAd
+    private lateinit var interstitialAd: InterstitialAd
+    private lateinit var adView: AdView
     private var lastBackPress: Long = 0
+    private val bannerAdSize: AdSize
+        get() {
+            val display = windowManager.defaultDisplay
+            val outMetrics = DisplayMetrics()
+            display.getMetrics(outMetrics)
+            val density = outMetrics.density
+            var adWidthPixels = llMainBannerContainer?.width?.toFloat() ?: 0f
+            if (adWidthPixels == 0f) {
+                adWidthPixels = outMetrics.widthPixels.toFloat()
+            }
+            val adWidth = (adWidthPixels / density).toInt()
+            return AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(this, adWidth)
+        }
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(layout.main_activity)
     
-        initAds()
         initToolbarAndDrawerAndNavigation()
         initViewModel()
+    
+        initAds()
     }
     
     private fun initAds() {
         MobileAds.initialize(this) {}
-        mInterstitialAd = InterstitialAd(this)
-        //FixMe: The ELSE one is a the test id too
-        mInterstitialAd.adUnitId = if (BuildConfig.DEBUG) "ca-app-pub-3940256099942544/1033173712" else "ca-app-pub-3940256099942544/1033173712"
-        mInterstitialAd.adListener = object : AdListener() {
+        requestConsents()
+        initInterstitial()
+        initBanner()
+    }
+    
+    private fun initInterstitial() {
+        interstitialAd = InterstitialAd(this)
+        interstitialAd.adUnitId = viewModel.getInterstitialAdUnit()
+        interstitialAd.adListener = object : AdListener() {
             override fun onAdLoaded() {
                 viewModel.setInterstitialAdLoaded()
-                mInterstitialAd.show()
+                interstitialAd.show()
             }
-    
+            
             override fun onAdFailedToLoad(errorCode: Int) {
                 viewModel.setInterstitialAdFailedToLoad()
             }
@@ -75,11 +100,44 @@ class MainActivity : DaggerAppCompatActivity() {
         }
     }
     
+    private fun initBanner() {
+        adView = AdView(this)
+        adView.adUnitId = viewModel.getBannerAdUnit()
+        adView.adSize = bannerAdSize
+        llMainBannerContainer.addView(adView)
+        val adRequest = Builder()
+            .addTestDevice("AAA1B95B86CE0F6FF6D741779CB93FFB")
+        
+        if (areConsentsAccepted) {
+            val extras = Bundle()
+            extras.putString("npa", "1")
+            adRequest.addNetworkExtrasBundle(AdMobAdapter::class.java, extras)
+        }
+        
+        adView.loadAd(adRequest.build())
+    }
+    
+    private fun requestConsents() {
+        val consentInformation = ConsentInformation.getInstance(this)
+        val publisherIds = arrayOf("ca-app-pub-2237700199215764~4393457531")
+        consentInformation.requestConsentInfoUpdate(publisherIds, object : ConsentInfoUpdateListener {
+            override fun onConsentInfoUpdated(consentStatus: ConsentStatus) {
+                when (consentStatus) {
+                    UNKNOWN -> areConsentsAccepted = false
+                    NON_PERSONALIZED -> areConsentsAccepted = false
+                    PERSONALIZED -> areConsentsAccepted = true
+                }
+            }
+            
+            override fun onFailedToUpdateConsentInfo(errorDescription: String) {
+                // User's consent status failed to update.
+            }
+        })
+    }
+    
     private fun initToolbarAndDrawerAndNavigation() {
         val toolbar = findViewById<Toolbar>(id.tMain)
-        val collapsingToolbarLayout = findViewById<CollapsingToolbarLayout>(id.ctlMain)
         setSupportActionBar(toolbar)
-        actionBar?.title = "JAJAJAJ"
         val navController: NavController = findNavController(id.fMainNavHost)
         val navigationView: NavigationView = findViewById(id.nvMain)
         drawerLayout = findViewById(id.dlMain)
@@ -94,7 +152,7 @@ class MainActivity : DaggerAppCompatActivity() {
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
-        collapsingToolbarLayout.setupWithNavController(toolbar, navController, appBarConfiguration)
+        toolbar.setupWithNavController(navController, appBarConfiguration)
         navigationView.setupWithNavController(navController)
     }
     
@@ -114,8 +172,8 @@ class MainActivity : DaggerAppCompatActivity() {
     }
     
     private fun showAd() {
-        if (!mInterstitialAd.isLoaded)
-            mInterstitialAd.loadAd(AdRequest.Builder().build())
+        if (!interstitialAd.isLoaded)
+            interstitialAd.loadAd(Builder().build())
     }
     
     override fun onBackPressed() {
