@@ -19,29 +19,31 @@ package com.etologic.elrefugioapp.android.main.activity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.etologic.elrefugioapp.android.global.base.BaseViewModel
-import com.etologic.elrefugioapp.core.model.enums.WebPageTypes
-import com.etologic.elrefugioapp.core.use_cases.GetWebPagesUseCase
-import io.reactivex.schedulers.Schedulers
 
-class MainViewModel internal constructor(
-    private val getWebPagesUseCase: GetWebPagesUseCase
-) : BaseViewModel() {
+class MainViewModel internal constructor() : BaseViewModel() {
     
     private val _loadAd = MutableLiveData<Boolean>()
     internal fun getLoadAd(): LiveData<Boolean> = _loadAd
     private val _interstitialAdFinished = MutableLiveData<Boolean>()
-    internal fun getInterstitialFinished(): LiveData<Boolean> = _interstitialAdFinished
+    internal fun getInterstitialAdFinished(): LiveData<Boolean> = _interstitialAdFinished
+    private val _interstitialAdFailedToLoad = MutableLiveData<Boolean>()
+    internal fun getInterstitialAdFailedToLoad(): LiveData<Boolean> = _interstitialAdFailedToLoad
+    private val _interstitialAdLoaded = MutableLiveData<Boolean>()
+    internal fun getInterstitialAdLoaded(): LiveData<Boolean> = _interstitialAdLoaded
     
-    internal fun getWebPage(webPageType: WebPageTypes): String =
-        getWebPagesUseCase.getWebPage(webPageType)
-            .subscribeOn(Schedulers.io())
-            .blockingGet()
-    
-    internal fun loadIntersticial() {
+    internal fun loadInterstitial() {
         _loadAd.postValue(true)
     }
     
-    internal fun setInterstitialAdFinished() {
+    internal fun setInterstitialAdClosed() {
         _interstitialAdFinished.postValue(true)
+    }
+    
+    internal fun setInterstitialAdLoaded() {
+        _interstitialAdLoaded.postValue(true)
+    }
+    
+    internal fun setInterstitialAdFailedToLoad() {
+        _interstitialAdFailedToLoad.postValue(true)
     }
 }

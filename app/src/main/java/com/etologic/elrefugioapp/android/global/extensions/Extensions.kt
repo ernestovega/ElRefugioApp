@@ -14,16 +14,24 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
-package com.etologic.elrefugioapp.android.main.activity
+package com.etologic.elrefugioapp.android.global.extensions
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import javax.inject.Inject
+import android.os.SystemClock
+import android.view.View
+import android.view.View.OnClickListener
 
-class MainViewModelFactory
-@Inject constructor() : ViewModelProvider.NewInstanceFactory() {
-    
-    @Suppress("UNCHECKED_CAST")
-    override fun <T : ViewModel> create(modelClass: Class<T>): T =
-        MainViewModel() as T
+internal fun View.setOnSecureClickListener(
+    debounceTime: Long = 600L,
+    action: (view: View) -> Unit
+) {
+    this.setOnClickListener(object : OnClickListener {
+        private var lastClickTime: Long = 0
+        
+        override fun onClick(v: View) {
+            if (SystemClock.elapsedRealtime() - lastClickTime < debounceTime) return
+            else action(v)
+            
+            lastClickTime = SystemClock.elapsedRealtime()
+        }
+    })
 }

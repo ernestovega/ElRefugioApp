@@ -106,7 +106,7 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxjava:2.2.19'
 
     //NETWORK
-    implementation("com.squareup.okhttp3:okhttp:4.6.0")
+    implementation 'com.google.code.gson:gson:2.8.6'
 
     //TEST
     androidTestImplementation 'junit:junit:4.13'

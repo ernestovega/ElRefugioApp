@@ -40,7 +40,14 @@
     <string name="url_welcoming">https://elrefugio.org/nodriza</string>
     <string name="url_guau_walker">https://elrefugio.org/guau-walker</string>
     <string name="url_vet_services">https://elrefugio.org/ayudanos/centro-veterinario</string>
-    <string name="muchas_gracias">¡Muchas gracias!\n❤</string>
+
+    <!--  SEE ADS  -->
+    <string name="muchas_gracias">¡Muchas gracias\npor ayudarnos!\n❤❤❤</string>
+    <string name="will_appear_another_in_">"Saldrá otro anuncio en "</string>
+    <string name="see_now">Ver ahora</string>
+    <string name="has_visto_n">Has visto %d</string>
 
     <!--  UNCLASSIFIED  -->
+    <string name="unclassified_anchor" />
+
 </resources>

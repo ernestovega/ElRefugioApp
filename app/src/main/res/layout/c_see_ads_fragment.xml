@@ -4,43 +4,107 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
-    android:gravity="center"
+    android:animateLayoutChanges="true"
     android:orientation="vertical"
+    android:gravity="center_horizontal"
     tools:context=".android.main.fragments.see_ads.SeeAdsFragment">
 
-    <ProgressBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true" />
-
-    <RelativeLayout
-        android:id="@+id/rlSeeAdsThanksContainer"
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="invisible">
+        android:layout_gravity="center"
+        android:layout_marginStart="-200dp"
+        android:importantForAccessibility="no"
+        android:scaleType="centerCrop"
+        android:src="@drawable/img_vet_services" />
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_marginStart="-256dp"
-            android:importantForAccessibility="no"
-            android:scaleType="centerCrop"
-            android:src="@drawable/img_vet_services" />
+    <ImageView
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_centerInParent="true"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/logo_elrefugio" />
+
+    <ProgressBar
+        android:id="@+id/pbSeeAdsLoading"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/tvSeeAdsThanks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="64dp"
+        android:gravity="center"
+        android:lineSpacingMultiplier="1.4"
+        android:src="@drawable/img_vet_services"
+        android:text="@string/muchas_gracias"
+        android:textColor="@color/design_default_color_on_primary"
+        android:textSize="32sp"
+        android:textStyle="bold" />
+
+    <RelativeLayout
+        android:id="@+id/rlSeeAdsActionsContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        tools:visibility="visible">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_above="@+id/tvSeeAdsSeeAnotherInSecondsNumber"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/img_vet_services"
+            android:text="@string/will_appear_another_in_"
+            android:textColor="@color/colorAccent"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvSeeAdsSeeAnotherInSecondsNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/btSeeAdsSeeOther"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="8dp"
+            android:textColor="@color/colorAccent"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            tools:text="10" />
+
+        <Button
+            android:id="@+id/btSeeAdsSeeOther"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/tvSeeAdsYouHaveSeenN"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/button_bg"
+            android:paddingStart="40dp"
+            android:paddingTop="24dp"
+            android:paddingEnd="40dp"
+            android:paddingBottom="24dp"
+            android:text="@string/see_now"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tvSeeAdsYouHaveSeenN"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_gravity="center"
-            android:layout_marginBottom="96dp"
+            android:layout_marginBottom="16dp"
             android:gravity="center"
             android:lineSpacingMultiplier="1.3"
             android:src="@drawable/img_vet_services"
-            android:text="@string/muchas_gracias"
-            android:textColor="@color/colorPrimary"
-            android:textSize="32sp"
+            android:text="@string/has_visto_n"
+            android:textColor="@color/design_default_color_on_primary"
             android:textStyle="bold" />
 
     </RelativeLayout>

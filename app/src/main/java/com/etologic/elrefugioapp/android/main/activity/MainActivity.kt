@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.*
+import com.etologic.elrefugioapp.BuildConfig
 import com.etologic.elrefugioapp.R
 import com.etologic.elrefugioapp.R.id
 import com.etologic.elrefugioapp.R.layout
@@ -50,13 +51,17 @@ class MainActivity : DaggerAppCompatActivity() {
     private fun initAds() {
         MobileAds.initialize(this) {}
         mInterstitialAd = InterstitialAd(this)
-        mInterstitialAd.adUnitId = "ca-app-pub-3940256099942544/1033173712"//FixMe: This is a test id
+        //FixMe: The ELSE one is a the test id too
+        mInterstitialAd.adUnitId = if (BuildConfig.DEBUG) "ca-app-pub-3940256099942544/1033173712" else "ca-app-pub-3940256099942544/1033173712"
         mInterstitialAd.adListener = object : AdListener() {
             override fun onAdLoaded() {
+                viewModel.setInterstitialAdLoaded()
                 mInterstitialAd.show()
             }
-            
-            override fun onAdFailedToLoad(errorCode: Int) {}
+    
+            override fun onAdFailedToLoad(errorCode: Int) {
+                viewModel.setInterstitialAdFailedToLoad()
+            }
             
             override fun onAdOpened() {}
             
@@ -65,7 +70,7 @@ class MainActivity : DaggerAppCompatActivity() {
             override fun onAdLeftApplication() {}
             
             override fun onAdClosed() {
-                viewModel.setInterstitialAdFinished()
+                viewModel.setInterstitialAdClosed()
             }
         }
     }
@@ -74,6 +79,7 @@ class MainActivity : DaggerAppCompatActivity() {
         val toolbar = findViewById<Toolbar>(id.tMain)
         val collapsingToolbarLayout = findViewById<CollapsingToolbarLayout>(id.ctlMain)
         setSupportActionBar(toolbar)
+        actionBar?.title = "JAJAJAJ"
         val navController: NavController = findNavController(id.fMainNavHost)
         val navigationView: NavigationView = findViewById(id.nvMain)
         drawerLayout = findViewById(id.dlMain)
